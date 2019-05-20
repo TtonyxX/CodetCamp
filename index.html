@@ -30,6 +30,7 @@
     <style type="text/css">
       html {
         background-color: orange;
+  		scroll-behavior: smooth;
       }
 
       .red-gradient {
@@ -104,8 +105,8 @@
 	  #info-btn {
 		width: 120px;
 		height: 50px;
-		-webkit-transition: width 1s, height 1s, font-size 1s; /* Safari */
-		transition: width 1s, height 1s, font-size 1s;
+		-webkit-transition: width 0.8s, height 0.8s, font-size 0.8s; /* Safari */
+		transition: width 0.8s, height 0.8s, font-size 0.8s;
 		font-size: 15px;
 		margin-top: 50px;
 	  }
@@ -121,30 +122,38 @@
 
   <body>
     <main class="mdl-layout__content red-gradient" id="content">
-      <div class="page-content" style="width: 100vw; height: 100vh;">
+      <div class="page-content" style="width: 100vw;">
 
-        <div id="logo-div" class="animated fadeOutUp">
-          <center><img src="images/CodetLogo.jpg" style="height: 100vh;"></center>
-        </div>
+      	<div style="height: 100vh;">
+	        <div id="logo-div" class="animated fadeOutUp">
+	          <center><img src="images/CodetLogo.jpg" style="height: 100vh;"></center>
+	        </div>
 
-        <center>
-          <h1
-            class="mb-3 text-white"
-            style="font-size: 110px; margin-top: 50px; line-height: 90%;"
-          >
-            <strong class="animated fadeInUp slower" style="font-size: 130px; color: orange;">CODET</strong><br> <span class="animated fadeInUp delay-1s" data-wow-delay="0.2s">Summer Camp</span>
-          </h1>
-          <h3 class="text-grey animated fadeInUp delay-1s">July 1st - July 5th</h3>
-        </center>
+	        <center>
+	          <h1
+	            class="mb-3 text-white"
+	            style="font-size: 110px; margin-top: 50px; line-height: 90%;"
+	          >
+	            <strong class="animated fadeInUp slower" style="font-size: 130px; color: orange;">CODET</strong><br> <span class="animated fadeInUp delay-1s" data-wow-delay="0.2s">Summer Camp</span>
+	          </h1>
+	          <h3 class="text-grey animated fadeInUp delay-1s">July 1st - July 5th</h3>
+	        </center>
 
-        <center><a href="/Posters/Camp Poster.pdf" target="_blank"><button id="info-btn" class="animated fadeInUp delay-1s mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-		  More Info
-		</button></a></center>
+	        <center><a href="#poster"><button id="info-btn" class="animated fadeInUp delay-1s mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+			  More Info
+			</button></a></center>
 
-        <center><a href="http://tinyurl.com/codetcamp" target="_blank"><button id="sign-up-btn" class="animated fadeInUp delay-1s mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-		  Sign Up
-		</button></a></center>
+	        <center><a href="http://tinyurl.com/codetcamp" target="_blank"><button id="sign-up-btn" class="animated fadeInUp delay-1s mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+			  Sign Up
+			</button></a>
+			</center>
+		</div>
         
+        <div style="margin-top: 10vh; margin-bottom: 30vh;" id="poster">
+        	<poster imageLink="Posters/Camp Poster.png"></poster>
+        	<poster class="wow fadeInUp" imageLink="Posters/Camp Poster 2.jpg"></poster>
+        	<poster class="wow fadeInUp" imageLink="Posters/Camp Poster 3.jpg"></poster>
+        </div>
     </main>
 
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
@@ -167,7 +176,13 @@
     <script src="js/wow.js"></script>
 
     <script>
-      
+
+       Vue.component("poster", {
+        template:
+          '<center><img style="width: 36vw; min-width: 300px;" :src="imagelink"></center>\
+        ',
+        props: ["imagelink"],
+      });
 
       new Vue({
         el: "#content",
